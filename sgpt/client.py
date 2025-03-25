@@ -46,7 +46,7 @@ class OpenAIClient:
             "top_p": top_probability,
             "stream": stream,
         }
-        endpoint = f"{self.api_host}/v1/chat/completions"
+        endpoint = f"{self.api_host}/chat/completions"
         response = requests.post(
             endpoint,
             # Hide API key from Rich traceback.
