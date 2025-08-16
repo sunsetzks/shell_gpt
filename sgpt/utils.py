@@ -17,7 +17,7 @@ class ModelOptions(str, Enum):
 
     GPT4 = "gpt-4"
     GPT432k = "gpt-4-32k"
-    GPT35TURBO = "glm-4-flash"
+    GPT35TURBO = "glm-4.5"
     GPT35TURBO16K = "gpt-3.5-turbo-16k"
 
 

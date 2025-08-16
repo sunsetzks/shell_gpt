@@ -32,8 +32,8 @@ def main(
         show_default=False,
         help="The prompt to generate completions for.",
     ),
-    model: ModelOptions = typer.Option(
-        ModelOptions(cfg.get("DEFAULT_MODEL")).value,
+    model: str = typer.Option(
+        cfg.get("DEFAULT_MODEL"),
         help="OpenAI GPT model to use.",
     ),
     temperature: float = typer.Option(
@@ -159,7 +159,7 @@ def main(
         # Will be in infinite loop here until user exits with Ctrl+C.
         ReplHandler(repl, role_class).handle(
             prompt,
-            model=model.value,
+            model=model,
             temperature=temperature,
             top_probability=top_probability,
             chat_id=repl,
@@ -169,7 +169,7 @@ def main(
     if chat:
         full_completion = ChatHandler(chat, role_class).handle(
             prompt,
-            model=model.value,
+            model=model,
             temperature=temperature,
             top_probability=top_probability,
             chat_id=chat,
@@ -178,7 +178,7 @@ def main(
     else:
         full_completion = DefaultHandler(role_class).handle(
             prompt,
-            model=model.value,
+            model=model,
             temperature=temperature,
             top_probability=top_probability,
             caching=cache,
@@ -198,7 +198,7 @@ def main(
         elif option == "d":
             DefaultHandler(DefaultRoles.DESCRIBE_SHELL.get_role()).handle(
                 full_completion,
-                model=model.value,
+                model=model,
                 temperature=temperature,
                 top_probability=top_probability,
                 caching=cache,
